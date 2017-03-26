@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.smee.e.dao.TestMapper">
+	<select id="getDoroCD" parameterType="String" resultType="String">
+		select
+			distinct(doro_cd)
+		from
+			loc_info
+		where
+			sigungu_nm = #{testGu}
+	</select>
+</mapper>
