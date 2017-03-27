@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,21 +104,28 @@
 	    		    	contentType : "application/json; charset=utf-8",
 	    		    	data : testDong,
 	    		    	//dataType : "json",
-	    		    	success : function(data) {
-	    		    		for(var i in data) {
-		    		    		geocoder.addr2coord(data[i], function(status, result) {
-		    		    			
-		    		    		    // 정상적으로 검색이 완료됐으면 
+	    		    	success : 
+	    		    		function(data) {
+	    		    		//for(var i in data) {
+	    		    		$.each(data, function (index,item){
+	    		    			//console.log("밖  : "+data[i]);
+	    		    			console.log("밖  : "+item);
+		    		    		//geocoder.addr2coord(data[i], function(status, result) {
+		    		    		geocoder.addr2coord(item, function(status, result) {    
+		    		    			// 정상적으로 검색이 완료됐으면 
 		    		    		    if (status === daum.maps.services.Status.OK) {
 		    		    				var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
-		
+
+			    		    			//console.log("안  : "+data[i]);
+			    		    			console.log("안  : "+item);
 		    		    	        	// 결과값으로 받은 위치를 마커로 표시합니다
 		    		    		        var marker = new daum.maps.Marker({
 		    		    		            map: map,
 		    		    		            position: coords
 		    		    		        });
 		    		    		     	// 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
-				    		    		var iwContent = '<div style="padding:5px;">'+data[i]+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+				    		    		//var iwContent = '<div style="padding:5px;">'+data[i]+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+				    		    		var iwContent = '<div style="padding:5px;">'+item+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 
 				    		    		// 인포윈도우를 생성합니다
 				    		    		var infowindow = new daum.maps.InfoWindow({
@@ -136,9 +144,9 @@
 			    		    		    	infowindow.close();
 				    		    		});
 		    		    		    }
-		    		    		});
+		    		    		}); 
 	    		    		    
-	    		    		}
+	    		    		});
 	    		    	},
 	    		    	error : function(e) {
 	    		    		console.log(e);

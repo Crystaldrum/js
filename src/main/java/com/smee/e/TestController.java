@@ -110,7 +110,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		System.out.println("Doro_CD : " + loadCode);
 		System.out.println("Doro_CD 개수 : "+loadCode.size());
 		for(int i = 0; i < loadCode.size(); i++) {
-			String juso = LTH_GET_URL+loadCode.get(i)+"&ServiceKey="+KSH_GET_KEY2;
+			String juso = LTH_GET_URL+loadCode.get(i)+"&ServiceKey="+PJH_GET_KEY2;
 			//String juso = "http://apis.data.go.kr/1611000/AptListService/getRoadnameAptList?loadCode=116802122002&ServiceKey=pSMWn87uRCBPH7CYLz7cgSugrQD0U9uYMQFBty6bZximARbBws232iw2fV0uIyjWmee7s8pEeEiBuwuuOhJV5A%3D%3D";
 			URL url = new URL(juso);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -126,11 +126,14 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 				// root Element는 response
 				List<Element> test = root.getChildren(); // header랑 body
 				//System.out.println(test.get(1));
-				Element body = (Element) root.getChildren().get(1); // body
+				//Element body = (Element) root.getChildren().get(1); // body
+				Element body = test.get(1).getChild("body");
 				List<Element> TestList = body.getChildren(); // items, numOfRows, pageNo, totalCount
 				//System.out.println(TestList.get(0)); // items
+				System.out.println("body태그 자식들 : "+TestList);
 				List<Element> itemList = TestList.get(0).getChildren(); // item
-				if(itemList != null) {
+				System.out.println("items 자식들 : "+itemList);
+				if(itemList.size() != 0) {
 					for(int j = 0; j < itemList.size(); j++) {
 						System.out.println(itemList.size()); // item 과 같은 라인의 사이즈
 						kaptList.add(itemList.get(j).getChild("kaptCode").getValue()); // kaptCode, kaptName
@@ -145,7 +148,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		//////////////////////KaptCode받아오기//////////////////////////////////////////////////////////
 		for(int i = 0; i < kaptList.size(); i++) {
-			String juso = LTH_GET_URL2+kaptList.get(i)+"&ServiceKey="+KSH_GET_KEY2;
+			String juso = LTH_GET_URL2+kaptList.get(i)+"&ServiceKey="+LSY_GET_KEY;
 			//String juso = "http://apis.data.go.kr/1611000/AptListService/getRoadnameAptList?loadCode=116802122002&ServiceKey=pSMWn87uRCBPH7CYLz7cgSugrQD0U9uYMQFBty6bZximARbBws232iw2fV0uIyjWmee7s8pEeEiBuwuuOhJV5A%3D%3D";
 			URL url = new URL(juso);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
