@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
@@ -173,7 +175,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 			} catch (Exception e) {
 				//e.printStackTrace();
 			}
-		}	
+		}
 		return addrList;
     }
 }

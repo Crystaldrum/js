@@ -60,7 +60,6 @@
 	    testArray.push('11350106'); */
 	    testArray.push('11680105');
 	    var infowindow = null;
-	    var iwContent = null;
 	    
 	    
     	for(var i in testArray) {
@@ -103,7 +102,7 @@
 	    		    	type : "post",
 	    		    	contentType : "application/json; charset=utf-8",
 	    		    	data : testDong,
-	    		    	dataType : "json",
+	    		    	//dataType : "json",
 	    		    	success : function(data) {
 	    		    		for(var i in data) {
 		    		    		geocoder.addr2coord(data[i], function(status, result) {
@@ -118,10 +117,10 @@
 		    		    		            position: coords
 		    		    		        });
 		    		    		     	// 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
-				    		    		iwContent = '<div style="padding:5px;">'+data[i]+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+				    		    		var iwContent = '<div style="padding:5px;">'+data[i]+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 
 				    		    		// 인포윈도우를 생성합니다
-				    		    		infowindow = new daum.maps.InfoWindow({
+				    		    		var infowindow = new daum.maps.InfoWindow({
 				    		    		    content : iwContent
 				    		    		});
 
