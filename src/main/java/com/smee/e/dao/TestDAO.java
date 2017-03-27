@@ -12,12 +12,12 @@ public class TestDAO {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	public ArrayList<String> getDoroCD(String testGu) {
+	public ArrayList<String> getDoroCD(String testDong) {
 		ArrayList<String> result = new ArrayList<>();
-		System.out.println("TestDAO : " + testGu);
+		System.out.println("TestDAO : " + testDong);
 		
 		TestMapper mapper = sqlsession.getMapper(TestMapper.class);
-		result = mapper.getDoroCD(testGu);
+		result = mapper.getDoroCD(testDong);
 		System.out.println(result);
 		
 		return result;

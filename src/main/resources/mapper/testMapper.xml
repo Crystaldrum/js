@@ -10,6 +10,6 @@
 		from
 			loc_info
 		where
-			sigungu_nm = #{testGu}
+			emd_nm = #{testDong}
 	</select>
 </mapper>
