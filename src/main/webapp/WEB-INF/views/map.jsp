@@ -59,6 +59,7 @@
 	    testArray.push('11110104');
 	    testArray.push('11350105');
 	    testArray.push('11350106'); */
+	    //testArray.push('11680101');
 	    testArray.push('11680105');
 	    var infowindow = null;
 	    
@@ -107,11 +108,11 @@
 	    		    	success : 
 	    		    		function(data) {
 	    		    		//for(var i in data) {
-	    		    		$.each(data, function (index,item){
+	    		    		$.each(data, function (index, item) {
 	    		    			//console.log("밖  : "+data[i]);
 	    		    			console.log("밖  : "+item);
 		    		    		//geocoder.addr2coord(data[i], function(status, result) {
-		    		    		geocoder.addr2coord(item, function(status, result) {    
+		    		    		geocoder.addr2coord(item, function(status, result) {
 		    		    			// 정상적으로 검색이 완료됐으면 
 		    		    		    if (status === daum.maps.services.Status.OK) {
 		    		    				var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);

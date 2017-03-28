@@ -126,8 +126,8 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 				// root Element는 response
 				List<Element> test = root.getChildren(); // header랑 body
 				//System.out.println(test.get(1));
-				//Element body = (Element) root.getChildren().get(1); // body
-				Element body = test.get(1).getChild("body");
+				Element body = (Element) root.getChildren().get(1); // body
+				//Element body = test.get(1).getChild("body");
 				List<Element> TestList = body.getChildren(); // items, numOfRows, pageNo, totalCount
 				//System.out.println(TestList.get(0)); // items
 				System.out.println("body태그 자식들 : "+TestList);
@@ -169,7 +169,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 				Element item = body.getChild("item");
 				System.out.println(item);
 				
-				if(item.getChild("kaptAddr").getValue().contains("삼성동")) {
+				if(item.getChild("kaptAddr").getValue().contains(testDong)) {
 					addrList.add(item.getChild("kaptAddr").getValue()); // item
 					System.out.println("kaptAddr : "+item.getChild("kaptAddr").getValue());
 				}
